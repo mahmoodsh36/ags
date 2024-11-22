@@ -40,18 +40,18 @@ function Wifi() {
     />
 }
 
-// function AudioSlider() {
-//     const speaker = Wp.get_default()?.audio.defaultSpeaker!
-//
-//     return <box className="AudioSlider" css="min-width: 140px">
-//         <icon icon={bind(speaker, "volumeIcon")} />
-//         <slider
-//             hexpand
-//             onDragged={({ value }) => speaker.volume = value}
-//             value={bind(speaker, "volume")}
-//         />
-//     </box>
-// }
+function AudioSlider() {
+    const speaker = Wp.get_default()?.audio.defaultSpeaker!
+
+    return <box className="AudioSlider" css="min-width: 140px">
+        <icon icon={bind(speaker, "volumeIcon")} />
+        <slider
+            hexpand
+            onDragged={({ value }) => speaker.volume = value}
+            value={bind(speaker, "volume")}
+        />
+    </box>
+}
 
 function BatteryLevel() {
     const bat = Battery.get_default()
@@ -137,7 +137,6 @@ export default function Bar(monitor: Gdk.Monitor) {
         | Astal.WindowAnchor.LEFT
         | Astal.WindowAnchor.RIGHT
 
-                // <AudioSlider />
     return <window
         className="Bar"
         gdkmonitor={monitor}
@@ -152,6 +151,7 @@ export default function Bar(monitor: Gdk.Monitor) {
                 <Media />
             </box>
             <box hexpand halign={Gtk.Align.END} >
+                <AudioSlider />
                 <SysTray />
                 <Wifi />
                 <BatteryLevel />
